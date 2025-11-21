@@ -18,8 +18,16 @@ export class BasePage {
         return this.page.getByText(text);
     }
 
+    protected getButtonByText(text: string) {
+        return this.page.getByRole('button', { name: text });
+    }
+
     protected getById(itemId: string) {
         return this.page.locator(`id=${itemId}`);
+    }
+
+    protected getByTestId(itemId: string) {
+        return this.page.getByTestId(itemId);
     }
 
 }

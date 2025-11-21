@@ -1,5 +1,12 @@
 import { BasePage } from "./basePage";
-import { Title, Categories, PrivacyWindowId, OnlyRequiredButtonId } from "./mainPageConstants"
+import {
+    Title,
+    Categories,
+    PrivacyWindowId,
+    OnlyRequiredButtonId,
+    AdminableCategoryTestId,
+    Restaurants,
+} from "./mainPageConstants"
 
 export class MainPage extends BasePage {
 
@@ -7,20 +14,36 @@ export class MainPage extends BasePage {
         await super.open();
         await this.assertTitle(Title)
     }
+
     public async closePrivacyWindow(): Promise<void> {
         const privacyWindow = this.getById(PrivacyWindowId);
-        if (await privacyWindow.isVisible()) {
-            const onlyRequiredButton = this.getById(OnlyRequiredButtonId);
-            await onlyRequiredButton.click();
-        }
+        const isVisible = await privacyWindow
+            .waitFor({ state: "visible", timeout: 5000 })
+            .then(() => true)
+            .catch(() => false);
+        if (!isVisible) return;
+
+        await this.getById(OnlyRequiredButtonId).click();
     }
 
     protected async openMenuSection(sectionName: string): Promise<void> {
-        const section = this.getByText(sectionName);
+        const section = this.getButtonByText(sectionName);
+        await section.click();
+    }
+
+    protected async openCategory(categoryName: string): Promise<void> {
+        const section = this.getByTestId(AdminableCategoryTestId)
+            .filter({ hasText: categoryName});
         await section.click();
     }
 
     public async openCategories(): Promise<void> {
         await this.openMenuSection(Categories);
+        await this.getByTestId("el:adminableCategory").filter({ hasText: 'Restaurants' }).click();
+    }
+
+     public async moveToRestaurantsPage(): Promise<void> {
+        await this.openCategories();
+        await this.openCategory(Restaurants);
     }
 }
