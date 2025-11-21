@@ -18,4 +18,8 @@ export class BasePage {
         return this.page.getByText(text);
     }
 
+    protected getById(itemId: string) {
+        return this.page.locator(`id=${itemId}`);
+    }
+
 }
