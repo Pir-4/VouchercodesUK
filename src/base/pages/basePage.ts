@@ -1,4 +1,4 @@
-import type { Locator, Page } from 'playwright-core';
+import type { Page } from 'playwright-core';
 import { expect } from "@playwright/test";
 
 export class BasePage {
