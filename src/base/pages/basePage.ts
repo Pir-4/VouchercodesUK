@@ -6,8 +6,12 @@ export class BasePage {
     constructor(public page: Page, public target_url: string) {
     }
 
-    async open() {
+    public async open(): Promise<void> {
         await this.page.goto(this.target_url);
-        await expect(this.page).toHaveTitle("VoucherCodes - Exclusive Discount Codes & Vouchers");
+    }
+
+    public async assertTitle(title: string): Promise<void> {
+        await expect(this.page).toHaveTitle(title);
+
     }
 }
