@@ -1,5 +1,5 @@
-import type {Page} from 'playwright-core';
-import {expect} from "@playwright/test";
+import type { Locator, Page } from 'playwright-core';
+import { expect } from "@playwright/test";
 
 export class BasePage {
 
@@ -12,6 +12,10 @@ export class BasePage {
 
     public async assertTitle(title: string): Promise<void> {
         await expect(this.page).toHaveTitle(title);
-
     }
+
+    protected getByText(text: string) {
+        return this.page.getByText(text);
+    }
+
 }
