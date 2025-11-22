@@ -1,15 +1,19 @@
 import { expect } from '@playwright/test';
 import { test } from "@tests/fixtures"
 import { LOCATIONS, DATES, PEOPLE } from "@tests/params";
+import { dateConverter } from './helpers';
 
 LOCATIONS.forEach((location) => {
-    test(`Search offers for ${location}`, async ({ mainPage }) => {
-        await mainPage.open();
-        await mainPage.closePrivacyWindow();
-        const rPage = await mainPage.moveToRestaurantsPage();
-        await rPage.fillLocation(location);
-        await rPage.selectDate('Today');
-        await rPage.selectPeople('4');
-        const t = 5;
+    DATES.forEach(({ dateValue, dateName }) => {
+        test(`Search offers for ${location} on ${dateName}`, async ({ mainPage }) => {
+            await mainPage.open();
+            await mainPage.closePrivacyWindow();
+            const rPage = await mainPage.moveToRestaurantsPage();
+            await rPage.fillLocation(location);
+            const dateValues = dateConverter(dateValue);
+            await rPage.selectDate(dateValues.inputValue, dateValues.expectedValue);
+            await rPage.selectPeople('4');
+            const t = 5;
+        });
     });
 });

@@ -6,7 +6,7 @@ import {
     DateSelectId,
     PeopleSelectId,
 } from "./restaurantsPageConstants";
-import {expect} from "@playwright/test";
+import { expect } from "@playwright/test";
 
 export class RestaurantsPage extends BasePage {
     public static createPage(page: Page) {
@@ -25,12 +25,12 @@ export class RestaurantsPage extends BasePage {
         await expect(locationInput).toHaveValue(text);
     }
 
-    public async selectDate(value: string) {
-        this.logger.info(`selecting date for ${value}`);
+    public async selectDate(inputValue: string, expectedValue: string) {
+        this.logger.info(`selecting date for ${inputValue}`);
         await this.takeScreenshot("SelectDate");
         const dateSelect = this.getById(DateSelectId);
-        await dateSelect.selectOption(value);
-        // await expect(dateSelect).toHaveValue(value);
+        await dateSelect.selectOption(inputValue);
+        await expect(dateSelect).toHaveValue(expectedValue);
     }
 
     public async selectPeople(value: string) {

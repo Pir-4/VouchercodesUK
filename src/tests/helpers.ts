@@ -1,9 +1,9 @@
 
-function getDateFormat(date: Date) {
+function getNumberFormattedDate(date: Date) {
 	return date.toISOString().split('T')[0];
 }
 
-function getDayShiftDate(shift: number): Date {
+export function getDayShiftDate(shift: number): Date {
 	const shiftDate = new Date();
 	shiftDate.setDate(shiftDate.getDate() + shift);
 	return shiftDate;
@@ -14,7 +14,7 @@ function getDayShiftDate(shift: number): Date {
  * @param date Date object
  * @returns string with date in format "Monday 24th Nov"
  */
-export function getFormattedDate(date: Date): string {
+export function getCalendarFormattedDate(date: Date): string {
 	const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -47,14 +47,14 @@ export function dateConverter(date: string | Date): { inputValue: string, expect
 		case "Any":
 			return { inputValue: "Any", expectedValue: "Any" };
 		case "Today":
-			return { inputValue: "Today", expectedValue: getDateFormat(getDayShiftDate(0)) };
+			return { inputValue: "Today", expectedValue: getNumberFormattedDate(getDayShiftDate(0)) };
 		case "Tomorrow":
-			return { inputValue: "Tomorrow", expectedValue: getDateFormat(getDayShiftDate(1)) };
+			return { inputValue: "Tomorrow", expectedValue: getNumberFormattedDate(getDayShiftDate(1)) };
 		default:
 			if (typeof date === "string") {
 				throw new Error(`${date} is not a valid date`);
 			}
-			return { inputValue: getFormattedDate(date), expectedValue: getDateFormat(date) };
+			return { inputValue: getCalendarFormattedDate(date), expectedValue: getNumberFormattedDate(date) };
 	}
 }
 
