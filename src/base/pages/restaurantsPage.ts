@@ -1,6 +1,6 @@
 import { Page } from "playwright-core";
-import { BasePage } from "./basePage";
 import { Logger } from "@base/logger";
+import { BasePage } from "./basePage";
 import {
     LocationInputId,
     DateSelectId,
@@ -8,7 +8,6 @@ import {
     FindVoucherButtonTestId,
     OffersXPath,
 } from "./restaurantsPageConstants";
-import { expect } from "@playwright/test";
 
 export class RestaurantsPage extends BasePage {
     public static createPage(page: Page) {
