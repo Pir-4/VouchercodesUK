@@ -1,0 +1,69 @@
+
+function getNumberFormattedDate(date: Date) {
+	return date.toISOString().split('T')[0];
+}
+
+export function getDayShiftDate(shift: number): Date {
+	const shiftDate = new Date();
+	shiftDate.setDate(shiftDate.getDate() + shift);
+	return shiftDate;
+}
+
+/**
+ * Returns date in format "Monday 24th Nov"
+ * @param date Date object
+ * @returns string with date in format "Monday 24th Nov"
+ */
+export function getCalendarFormattedDate(date: Date): string {
+	const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+	const dayOfWeek = daysOfWeek[date.getDay()];
+	const day = date.getDate();
+	const month = months[date.getMonth()];
+
+	// Get suffix for day number (1st, 2nd, 3rd, 4th, etc.)
+	const getDaySuffix = (day: number): string => {
+		if (day >= 11 && day <= 13) {
+			return 'th';
+		}
+		switch (day % 10) {
+			case 1:
+				return 'st';
+			case 2:
+				return 'nd';
+			case 3:
+				return 'rd';
+			default:
+				return 'th';
+		}
+	};
+
+	return `${dayOfWeek} ${day}${getDaySuffix(day)} ${month}`;
+}
+
+export function dateConverter(date: string | Date): { inputValue: string, expectedValue: string } {
+	switch (date) {
+		case "Any":
+			return { inputValue: "", expectedValue: "Any" };
+		case "Today":
+			return { inputValue: "Today", expectedValue: getNumberFormattedDate(getDayShiftDate(0)) };
+		case "Tomorrow":
+			return { inputValue: "Tomorrow", expectedValue: getNumberFormattedDate(getDayShiftDate(1)) };
+		default:
+			if (typeof date === "string") {
+				throw new Error(`${date} is not a valid date`);
+			}
+			return { inputValue: getCalendarFormattedDate(date), expectedValue: getNumberFormattedDate(date) };
+	}
+}
+
+export function peopleConverter(peopleValue: string): { inputValue: string, expectedValue: string } {
+	switch (peopleValue) {
+		case "Any":
+			return { inputValue: "", expectedValue: "Any" };
+		default:
+			return { inputValue: peopleValue, expectedValue: peopleValue };
+	}
+}
+

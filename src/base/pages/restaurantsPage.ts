@@ -5,8 +5,10 @@ import {
     LocationInputId,
     DateSelectId,
     PeopleSelectId,
+    FindVoucherButtonTestId,
+    OffersXPath,
 } from "./restaurantsPageConstants";
-import {expect} from "@playwright/test";
+import { expect } from "@playwright/test";
 
 export class RestaurantsPage extends BasePage {
     public static createPage(page: Page) {
@@ -18,26 +20,43 @@ export class RestaurantsPage extends BasePage {
     }
 
     public async fillLocation(text: string) {
-        this.logger.info(`filling location for ${text}`);
+        this.logger.info(`filling location for "${text}"`);
         await this.takeScreenshot("FillLocation");
         const locationInput = this.getById(LocationInputId);
         await locationInput.fill(text);
-        await expect(locationInput).toHaveValue(text);
+        return locationInput.inputValue();
     }
 
-    public async selectDate(value: string) {
-        this.logger.info(`selecting date for ${value}`);
+    public async selectDate(inputValue: string) {
+        this.logger.info(`selecting date for "${inputValue}"`);
         await this.takeScreenshot("SelectDate");
         const dateSelect = this.getById(DateSelectId);
-        await dateSelect.selectOption(value);
-        // await expect(dateSelect).toHaveValue(value);
+        if (inputValue) {
+            await dateSelect.selectOption(inputValue);
+        }
+        return dateSelect.inputValue();
     }
 
-    public async selectPeople(value: string) {
-        this.logger.info(`selecting people for ${value}`);
+    public async selectPeople(inputValue: string) {
+        this.logger.info(`selecting people for "${inputValue}"`);
         await this.takeScreenshot("SelectPeople");
         const peopleSelect = this.getById(PeopleSelectId);
-        await peopleSelect.selectOption(value);
-        await expect(peopleSelect).toHaveValue(value);
+        if (inputValue) {
+            await peopleSelect.selectOption(inputValue);
+        }
+        return peopleSelect.inputValue();
+    }
+
+    public async clickFindVoucherButton() {
+        this.logger.info("press FindVoucher button");
+        await this.getByTestId(FindVoucherButtonTestId).click();
+    }
+
+    public async getAmountOffers(): Promise<number> {
+        this.logger.info("getting amount of offers");
+        const offers = this.getByXPath(OffersXPath);
+        const count = await offers.count();
+        this.logger.info(`Found ${count} offers`);
+        return count;
     }
 }

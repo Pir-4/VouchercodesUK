@@ -1,7 +1,7 @@
-import type { Page } from 'playwright-core';
-import { expect } from "@playwright/test";
-import { Logger } from "@base/logger";
-import { SCREENSHOTS_PATH, IS_SAVE_SCREENSHOTS } from "@base/config";
+import type {Page} from 'playwright-core';
+import {expect} from "@playwright/test";
+import {Logger} from "@base/logger";
+import {IS_SAVE_SCREENSHOTS, SCREENSHOTS_PATH} from "@base/config";
 
 export class BasePage {
     public readonly logger: Logger;
@@ -10,7 +10,7 @@ export class BasePage {
     }
 
     public async open(): Promise<void> {
-        this.logger.info(`Open ${this.target_url}`);
+        this.logger.info(`open ${this.target_url}`);
         await this.page.goto(this.target_url);
         await this.takeScreenshot("open");
     }
@@ -20,9 +20,9 @@ export class BasePage {
         await expect(this.page).toHaveTitle(title);
     }
 
-    protected getByText(text: string) {
-        this.logger.debug(`get item by text: ${text}`);
-        return this.page.getByText(text);
+    protected getByXPath(xpath: string) {
+        this.logger.debug(`get item by xpath: ${xpath}`);
+        return this.page.locator(`xpath=${xpath}`);
     }
 
     protected getButtonByText(text: string) {
