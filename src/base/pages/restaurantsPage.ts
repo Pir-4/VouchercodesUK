@@ -27,9 +27,11 @@ export class RestaurantsPage extends BasePage {
 
     public async selectDate(inputValue: string, expectedValue: string) {
         this.logger.info(`selecting date for ${inputValue}`);
-        await this.takeScreenshot("SelectDate");
-        const dateSelect = this.getById(DateSelectId);
-        await dateSelect.selectOption(inputValue);
+                    await this.takeScreenshot("SelectDate");
+            const dateSelect = this.getById(DateSelectId);
+        if (inputValue) {
+            await dateSelect.selectOption(inputValue);
+        }
         await expect(dateSelect).toHaveValue(expectedValue);
     }
 

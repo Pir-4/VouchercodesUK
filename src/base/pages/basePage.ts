@@ -1,4 +1,4 @@
-import type { Page } from 'playwright-core';
+import type { Page, Locator } from 'playwright-core';
 import { expect } from "@playwright/test";
 import { Logger } from "@base/logger";
 import { SCREENSHOTS_PATH, IS_SAVE_SCREENSHOTS } from "@base/config";
@@ -46,5 +46,21 @@ export class BasePage {
         const currentDate = new Date().toISOString().replace(/[:.]/g, '-');
         const screenshotFileName = `${name}-${currentDate}.png`;
         await this.page.screenshot({ path: `${SCREENSHOTS_PATH}/${screenshotFileName}`, fullPage: true });
+    }
+
+    public async getSelectOptions(dropdown: Locator): Promise<Array<{ value: string; text: string }>> {
+        this.logger.debug("getting all select options");
+        const options = await dropdown.locator('option').all();
+        const optionsData = await Promise.all(
+            options.map(async (option) => {
+                const value = await option.getAttribute('value');
+                const text = await option.textContent();
+                return {
+                    value: value || '',
+                    text: text?.trim() || '',
+                };
+            })
+        );
+        return optionsData;
     }
 }

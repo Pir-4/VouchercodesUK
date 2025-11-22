@@ -45,7 +45,7 @@ export function getCalendarFormattedDate(date: Date): string {
 export function dateConverter(date: string | Date): { inputValue: string, expectedValue: string } {
 	switch (date) {
 		case "Any":
-			return { inputValue: "Any", expectedValue: "Any" };
+			return { inputValue: "", expectedValue: "Any" };
 		case "Today":
 			return { inputValue: "Today", expectedValue: getNumberFormattedDate(getDayShiftDate(0)) };
 		case "Tomorrow":

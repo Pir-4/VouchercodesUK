@@ -6,10 +6,10 @@ export const LOCATIONS = [
     "SW7 5ND",
 ];
 export const DATES = [
-    // {
-    // 	dateValue: "Any",
-    // 	dateName: "Any",
-    // },
+    {
+    	dateValue: "Any",
+    	dateName: "Any",
+    },
     {
         dateValue: "Today",
         dateName: "Today",
