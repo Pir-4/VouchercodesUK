@@ -8,6 +8,7 @@ import {
     OnlyRequiredButtonId,
     AdminableCategoryTestId,
     Restaurants,
+    PrivacyWindowTimeout,
 } from "./mainPageConstants"
 import type {Page} from "playwright-core";
 
@@ -23,31 +24,36 @@ export class MainPage extends BasePage {
     }
 
     public async closePrivacyWindow(): Promise<void> {
+         this.logger.info('close privacy window');
         const privacyWindow = this.getById(PrivacyWindowId);
         const isVisible = await privacyWindow
-            .waitFor({ state: "visible", timeout: 5000 })
+            .waitFor({ state: "visible", timeout: PrivacyWindowTimeout })
             .then(() => true)
             .catch(() => false);
+
         if (!isVisible) return;
 
         await this.getById(OnlyRequiredButtonId).click();
     }
 
     protected async openMenuSection(sectionName: string): Promise<void> {
+         this.logger.info(`open menu section ${sectionName}`);
         const section = this.getButtonByText(sectionName);
         await section.click();
     }
 
     protected async openCategory(categoryName: string): Promise<void> {
+         this.logger.info(`open category ${categoryName}`);
         const section = this.getByTestId(AdminableCategoryTestId)
             .filter({ hasText: categoryName });
         await section.click();
     }
 
     public async moveToRestaurantsPage() {
+         this.logger.info('move to restaurants page');
         await this.openMenuSection(Categories);
         await this.openCategory(Restaurants);
-        // Ждем навигации перед получением URL
+        // Wait for navigation before getting URL
         await this.page.waitForURL('**', { waitUntil: 'networkidle' });
         return RestaurantsPage.createPage(this.page);
     }
