@@ -25,6 +25,11 @@ export class BasePage {
         return this.page.getByText(text);
     }
 
+    protected getByXPath(xpath: string) {
+        this.logger.debug(`get item by xpath: ${xpath}`);
+        return this.page.locator(`xpath=${xpath}`);
+    }
+
     protected getButtonByText(text: string) {
         this.logger.debug(`get button by text: ${text}`);
         return this.page.getByRole('button', { name: text });

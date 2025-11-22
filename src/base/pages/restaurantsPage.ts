@@ -44,4 +44,14 @@ export class RestaurantsPage extends BasePage {
         }
         return peopleSelect.inputValue();
     }
+
+    public async pressFindVoucher() {
+        this.logger.info("Press FindVoucher button");
+        await this.getByTestId('el:findRestaurantsVoucherButton').click();
+    }
+
+    public async getAmountOffers(): Promise<number> {
+        const offers = this.getByXPath('//*[@*[starts-with(., "el:offer offerId:")]]');
+        return await offers.count();
+    }
 }

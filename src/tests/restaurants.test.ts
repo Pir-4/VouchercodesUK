@@ -26,6 +26,9 @@ LOCATIONS.forEach((location) => {
                 const actualPeopleValue = await restaurantsPage.selectPeople(peopleValues.inputValue);
                 assertEqual(actualPeopleValue, peopleValues.expectedValue, "People amount value")
 
+                await restaurantsPage.pressFindVoucher();
+                const actualAmountOffers = await restaurantsPage.getAmountOffers();
+                const t  = 6;
             });
         });
     });
