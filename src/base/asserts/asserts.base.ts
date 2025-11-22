@@ -1,5 +1,6 @@
-import { logWrapper, expectBuilder } from "./utils";
+import {expect} from "@playwright/test";
 import { Logger } from "@base/logger";
+import { logWrapper, expectBuilder } from "./utils";
 
 export function assertEqual(
   actualValue: unknown,
@@ -21,3 +22,16 @@ export function assertEqual(
   );
   logWrapper(assert_func.toEqual, expectedValue, expectedValue, logger);
 }
+
+ export function assertGreaterThan(
+    actualValue: number,
+    boundaryValue: number,
+    actualValueName = "Actual value",
+  ) {
+    const error_msg = `${actualValueName} is less then ${boundaryValue}`;
+    logWrapper(
+      expect(actualValue, error_msg).toBeGreaterThan,
+      boundaryValue,
+      actualValue,
+    );
+  }

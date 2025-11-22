@@ -1,5 +1,5 @@
-import {Logger} from "@base/logger";
 import {expect} from "@playwright/test";
+import {Logger} from "@base/logger";
 
 export function logWrapper(
   // biome-ignore lint/complexity/noBannedTypes: need

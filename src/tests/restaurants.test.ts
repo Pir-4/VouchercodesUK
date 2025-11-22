@@ -1,6 +1,6 @@
 import { test } from "@tests/fixtures"
 import { LOCATIONS, DATES, PEOPLE } from "@tests/params";
-import {assertEqual} from "@base/asserts";
+import {assertEqual, assertGreaterThan} from "@base/asserts";
 import { dateConverter, peopleConverter } from './helpers';
 
 LOCATIONS.forEach((location) => {
@@ -28,7 +28,7 @@ LOCATIONS.forEach((location) => {
 
                 await restaurantsPage.clickFindVoucherButton();
                 const actualAmountOffers = await restaurantsPage.getAmountOffers();
-                const t  = 6;
+                assertGreaterThan(actualAmountOffers, 0);
             });
         });
     });
