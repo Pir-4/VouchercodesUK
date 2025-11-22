@@ -1,9 +1,14 @@
 import { Page } from "playwright-core";
 import { BasePage } from "./basePage";
+import {Logger} from "@base/logger";
 
 export class RestaurantsPage extends BasePage {
     public static createPage(page: Page) {
         return new RestaurantsPage(page, page.url());
+    }
+
+    constructor(public page: Page, public target_url: string) {
+        super(page, target_url, Logger.child("RestaurantsPage"));
     }
 
     public async fillLocation(text: string) {
