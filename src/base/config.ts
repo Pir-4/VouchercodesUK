@@ -8,8 +8,9 @@ import { LogLevel } from "@base/logger/logger";
 dotenv.config();
 
 const env = parseEnv(process.env, {
-    PAGE_URL :z.string().default("The ulr of tested page"),
-    APP_LOG_LEVEL: z
+  PAGE_URL: z.string().default("The ulr of tested page"),
+  SCREENSHOTS_PATH: z.string().default("/tmp/screenshots"),
+  APP_LOG_LEVEL: z
     .nativeEnum(LogLevel)
     .optional()
     .default(LogLevel.info)
@@ -21,4 +22,5 @@ const env = parseEnv(process.env, {
 export const {
   PAGE_URL,
   APP_LOG_LEVEL,
+  SCREENSHOTS_PATH,
 } = env;

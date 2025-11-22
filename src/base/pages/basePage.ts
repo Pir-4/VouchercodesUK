@@ -1,6 +1,7 @@
 import type { Page } from 'playwright-core';
 import { expect } from "@playwright/test";
-import {Logger} from "@base/logger";
+import { Logger } from "@base/logger";
+import { SCREENSHOTS_PATH } from "@base/config";
 
 export class BasePage {
     public readonly logger: Logger;
@@ -11,6 +12,7 @@ export class BasePage {
     public async open(): Promise<void> {
         this.logger.info(`Open ${this.target_url}`);
         await this.page.goto(this.target_url);
+        await this.takeScreenshot("open");
     }
 
     public async assertTitle(title: string): Promise<void> {
@@ -36,5 +38,12 @@ export class BasePage {
     protected getByTestId(itemId: string) {
         this.logger.debug(`get item by test id: ${itemId}`);
         return this.page.getByTestId(itemId);
+    }
+
+    public async takeScreenshot(name: string) {
+        this.logger.debug(`taking screenshot to ${name}`);
+        const currentDate = new Date().toISOString().replace(/[:.]/g, '-');
+        const screenshotFileName = `${name}-${currentDate}.png`;
+        await this.page.screenshot({ path: `${SCREENSHOTS_PATH}/${screenshotFileName}`, fullPage: true });
     }
 }
