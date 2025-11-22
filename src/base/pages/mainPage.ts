@@ -1,4 +1,5 @@
 import { BasePage } from "./basePage";
+import { RestaurantsPage } from "./restaurantsPage";
 import {
     Title,
     Categories,
@@ -37,8 +38,11 @@ export class MainPage extends BasePage {
         await section.click();
     }
 
-    public async openCategories(): Promise<void> {
+    public async moveToRestaurantsPage() {
         await this.openMenuSection(Categories);
         await this.openCategory(Restaurants);
+        // Ждем навигации перед получением URL
+        await this.page.waitForURL('**', { waitUntil: 'networkidle' });
+        return RestaurantsPage.createPage(this.page);
     }
 }

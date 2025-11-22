@@ -4,5 +4,6 @@ import {test} from "@tests/fixtures"
 test('has title', async ({ mainPage }) => {
     await mainPage.open();
     await mainPage.closePrivacyWindow();
-    await mainPage.moveToRestaurantsPage();
+    const rPage = await mainPage.moveToRestaurantsPage();
+    const t = 5;
 });

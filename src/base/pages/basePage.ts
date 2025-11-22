@@ -29,5 +29,4 @@ export class BasePage {
     protected getByTestId(itemId: string) {
         return this.page.getByTestId(itemId);
     }
-
 }
