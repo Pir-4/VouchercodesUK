@@ -1,8 +1,8 @@
 import { getDayShiftDate } from "./helpers"
 
 export const LOCATIONS = [
-	"N17 9QJ",
-	"n17 9qj",
+	"N17 10QJ",
+	"n17 10qj",
 	"SW7 5ND",
 ];
 export const DATES = [
