@@ -11,7 +11,6 @@ export function assertEqual(
   const logger = Logger.child("Assert");
   logger.debug("Assert equal");
   let error_msg = `${actualValueName} has value ${actualValue} is not equal to ${expectedValue}`;
-  // let assert_func = expect(actual_value, error_msg);
   if (!isEqual) {
     error_msg = `${actualValueName} has value ${actualValue} is equal to ${expectedValue}`;
   }
