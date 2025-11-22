@@ -1,6 +1,11 @@
 import { Page } from "playwright-core";
 import { BasePage } from "./basePage";
-import {Logger} from "@base/logger";
+import { Logger } from "@base/logger";
+import {
+    LocationInputId,
+    DateSelectId,
+    PeopleSelectId,
+} from "./restaurantsPageConstants";
 
 export class RestaurantsPage extends BasePage {
     public static createPage(page: Page) {
@@ -13,19 +18,19 @@ export class RestaurantsPage extends BasePage {
 
     public async fillLocation(text: string) {
         this.logger.info(`filling location for ${text}`);
-        const locationInput = this.getById('google-autocomplete');
+        const locationInput = this.getById(LocationInputId);
         await locationInput.fill(text);
     }
 
     public async selectDate(value: string) {
         this.logger.info(`selecting date for ${value}`);
-        const dateSelect = this.getById('day-select');
+        const dateSelect = this.getById(DateSelectId);
         await dateSelect.selectOption(value);
     }
 
     public async selectPeople(value: string) {
         this.logger.info(`selecting people for ${value}`);
-        const peopleSelect = this.getById('people-select');
+        const peopleSelect = this.getById(PeopleSelectId);
         await peopleSelect.selectOption(value);
     }
 }
