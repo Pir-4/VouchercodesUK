@@ -5,6 +5,8 @@ import {
     LocationInputId,
     DateSelectId,
     PeopleSelectId,
+    FindVoucherButtonTestId,
+    OffersXPath,
 } from "./restaurantsPageConstants";
 import { expect } from "@playwright/test";
 
@@ -45,13 +47,16 @@ export class RestaurantsPage extends BasePage {
         return peopleSelect.inputValue();
     }
 
-    public async pressFindVoucher() {
+    public async clickFindVoucherButton() {
         this.logger.info("Press FindVoucher button");
-        await this.getByTestId('el:findRestaurantsVoucherButton').click();
+        await this.getByTestId(FindVoucherButtonTestId).click();
     }
 
     public async getAmountOffers(): Promise<number> {
-        const offers = this.getByXPath('//*[@*[starts-with(., "el:offer offerId:")]]');
-        return await offers.count();
+        this.logger.info("Getting amount of offers");
+        const offers = this.getByXPath(OffersXPath);
+        const count = await offers.count();
+        this.logger.info(`Found ${count} offers`);
+        return count;
     }
 }
