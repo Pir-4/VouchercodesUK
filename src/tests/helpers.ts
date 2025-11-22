@@ -3,6 +3,12 @@ function getDateFormat(date: Date) {
 	return date.toISOString().split('T')[0];
 }
 
+function getDayShiftDate(shift: number): Date {
+	const shiftDate = new Date();
+	shiftDate.setDate(shiftDate.getDate() + shift);
+	return shiftDate;
+}
+
 /**
  * Returns date in format "Monday 24th Nov"
  * @param date Date object
@@ -41,9 +47,9 @@ export function dateConverter(date: string | Date): { inputValue: string, expect
 		case "Any":
 			return { inputValue: "Any", expectedValue: "Any" };
 		case "Today":
-			return { inputValue: "Today", expectedValue: getDateFormat(new Date()) };
+			return { inputValue: "Today", expectedValue: getDateFormat(getDayShiftDate(0)) };
 		case "Tomorrow":
-			return { inputValue: "Tomorrow", expectedValue: getDateFormat(new Date(Date.now() + 24 * 60 * 60 * 1000)) };
+			return { inputValue: "Tomorrow", expectedValue: getDateFormat(getDayShiftDate(1)) };
 		default:
 			if (typeof date === "string") {
 				throw new Error(`${date} is not a valid date`);
