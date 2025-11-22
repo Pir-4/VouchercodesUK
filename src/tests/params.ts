@@ -8,84 +8,84 @@ export const LOCATIONS = [
 export const DATES = [
 	{
 		dateValue: "Any",
-		dateName: "Any",
+		dateCaseName: "Any",
 	},
 	{
 		dateValue: "Today",
-		dateName: "Today",
+		dateCaseName: "Today",
 	},
 	{
 		dateValue: "Tomorrow",
-		dateName: "Tomorrow",
+		dateCaseName: "Tomorrow",
 	},
 	{
 		dateValue: getDayShiftDate(2),
-		dateName: "Tomorrow+1",
+		dateCaseName: "Tomorrow+1",
 	},
 	{
 		dateValue: getDayShiftDate(3),
-		dateName: "Tomorrow+2",
+		dateCaseName: "Tomorrow+2",
 	},
 	{
 		dateValue: getDayShiftDate(4),
-		dateName: "Tomorrow+3",
+		dateCaseName: "Tomorrow+3",
 	},
 	{
 		dateValue: getDayShiftDate(5),
-		dateName: "Tomorrow+4",
+		dateCaseName: "Tomorrow+4",
 	},
 	{
 		dateValue: getDayShiftDate(6),
-		dateName: "Tomorrow+5",
+		dateCaseName: "Tomorrow+5",
 	},
 ];
 export const PEOPLE = [
 	{
 		peopleValue: "Any",
-		peopleName: "Any",
+		peopleCaseName: "Any",
 	},
 	{
 		peopleValue: "1",
-		peopleName: "1",
+		peopleCaseName: "1",
 	},
 	{
 		peopleValue: "2",
-		peopleName: "2",
+		peopleCaseName: "2",
 	},
 	{
 		peopleValue: "3",
-		peopleName: "3",
+		peopleCaseName: "3",
 	},
 	{
 		peopleValue: "4",
-		peopleName: "4",
+		peopleCaseName: "4",
 	},
 	{
 		peopleValue: "5",
-		peopleName: "5",
+		peopleCaseName: "5",
 	},
 	{
 		peopleValue: "6",
-		peopleName: "6",
+		peopleCaseName: "6",
 	},
 	{
 		peopleValue: "7",
-		peopleName: "7",
+		peopleCaseName: "7",
 	},
 	{
 		peopleValue: "8",
-		peopleName: "8",
+		peopleCaseName: "8",
 	},
 	{
 		peopleValue: "9",
-		peopleName: "9",
+		peopleCaseName: "9",
 	},
 	{
 		peopleValue: "10",
-		peopleName: "10",
+		peopleCaseName: "10",
 	},
 	{
 		peopleValue: "10+",
-		peopleName: "10+",
+		peopleCaseName: "10+",
 	},
 ];

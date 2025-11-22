@@ -4,9 +4,9 @@ import { LOCATIONS, DATES, PEOPLE } from "@tests/params";
 import { dateConverter, peopleConverter } from './helpers';
 
 LOCATIONS.forEach((location) => {
-    DATES.forEach(({ dateValue, dateName }) => {
-        PEOPLE.forEach(({ peopleName, peopleValue }) => {
-            test(`Search offers for ${location} on ${dateName} for ${peopleName}`, async ({ mainPage }) => {
+    DATES.forEach(({ dateValue, dateCaseName }) => {
+        PEOPLE.forEach(({ peopleCaseName, peopleValue }) => {
+            test(`Search offers for ${location} on ${dateCaseName} for ${peopleCaseName}`, async ({ mainPage }) => {
                 await mainPage.open();
                 await mainPage.closePrivacyWindow();
                 const rPage = await mainPage.moveToRestaurantsPage();
