@@ -42,50 +42,50 @@ export const DATES = [
 export const PEOPLE = [
 	{
 		peopleValue: "Any",
-		dateName: "Any",
+		peopleName: "Any",
 	},
 	{
 		peopleValue: "1",
-		dateName: "1",
+		peopleName: "1",
 	},
 	{
 		peopleValue: "2",
-		dateName: "2",
+		peopleName: "2",
 	},
 	{
 		peopleValue: "3",
-		dateName: "3",
+		peopleName: "3",
 	},
 	{
 		peopleValue: "4",
-		dateName: "4",
+		peopleName: "4",
 	},
 	{
 		peopleValue: "5",
-		dateName: "5",
+		peopleName: "5",
 	},
 	{
 		peopleValue: "6",
-		dateName: "6",
+		peopleName: "6",
 	},
 	{
 		peopleValue: "7",
-		dateName: "7",
+		peopleName: "7",
 	},
 	{
 		peopleValue: "8",
-		dateName: "8",
+		peopleName: "8",
 	},
 	{
 		peopleValue: "9",
-		dateName: "9",
+		peopleName: "9",
 	},
 	{
 		peopleValue: "10",
-		dateName: "10",
+		peopleName: "10",
 	},
 	{
 		peopleValue: "10+",
-		dateName: "10+",
+		peopleName: "10+",
 	},
 ];

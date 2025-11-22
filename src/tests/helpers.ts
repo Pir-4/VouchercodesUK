@@ -58,3 +58,12 @@ export function dateConverter(date: string | Date): { inputValue: string, expect
 	}
 }
 
+export function peopleConverter(peopleValue: string): { inputValue: string, expectedValue: string } {
+	switch (peopleValue) {
+		case "Any":
+			return { inputValue: "", expectedValue: "Any" };
+		default:
+			return { inputValue: peopleValue, expectedValue: peopleValue };
+	}
+}
+

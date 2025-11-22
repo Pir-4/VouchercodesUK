@@ -26,20 +26,22 @@ export class RestaurantsPage extends BasePage {
     }
 
     public async selectDate(inputValue: string, expectedValue: string) {
-        this.logger.info(`selecting date for ${inputValue}`);
-                    await this.takeScreenshot("SelectDate");
-            const dateSelect = this.getById(DateSelectId);
+        this.logger.info(`selecting date for "${inputValue}"`);
+        await this.takeScreenshot("SelectDate");
+        const dateSelect = this.getById(DateSelectId);
         if (inputValue) {
             await dateSelect.selectOption(inputValue);
         }
         await expect(dateSelect).toHaveValue(expectedValue);
     }
 
-    public async selectPeople(value: string) {
-        this.logger.info(`selecting people for ${value}`);
+    public async selectPeople(inputValue: string, expectedValue: string) {
+        this.logger.info(`selecting people for "${inputValue}"`);
         await this.takeScreenshot("SelectPeople");
         const peopleSelect = this.getById(PeopleSelectId);
-        await peopleSelect.selectOption(value);
-        await expect(peopleSelect).toHaveValue(value);
+        if (inputValue) {
+            await peopleSelect.selectOption(inputValue);
+        }
+        await expect(peopleSelect).toHaveValue(expectedValue);
     }
 }
