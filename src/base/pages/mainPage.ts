@@ -33,17 +33,12 @@ export class MainPage extends BasePage {
 
     protected async openCategory(categoryName: string): Promise<void> {
         const section = this.getByTestId(AdminableCategoryTestId)
-            .filter({ hasText: categoryName});
+            .filter({ hasText: categoryName });
         await section.click();
     }
 
     public async openCategories(): Promise<void> {
         await this.openMenuSection(Categories);
-        await this.getByTestId("el:adminableCategory").filter({ hasText: 'Restaurants' }).click();
-    }
-
-     public async moveToRestaurantsPage(): Promise<void> {
-        await this.openCategories();
         await this.openCategory(Restaurants);
     }
 }
