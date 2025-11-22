@@ -1,3 +1,4 @@
+import type { Page } from "playwright-core";
 import { Logger } from "@base/logger";
 import { BasePage } from "./basePage";
 import { RestaurantsPage } from "./restaurantsPage";
@@ -10,7 +11,6 @@ import {
     Restaurants,
     PrivacyWindowTimeout,
 } from "./mainPageConstants"
-import type { Page } from "playwright-core";
 
 export class MainPage extends BasePage {
 

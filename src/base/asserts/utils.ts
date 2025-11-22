@@ -4,28 +4,28 @@ import {Logger} from "@base/logger";
 export function logWrapper(
   // biome-ignore lint/complexity/noBannedTypes: need
   func: Function,
-  expected_value: unknown | null,
-  cause_obj: unknown,
+  expectedValue: unknown | null,
+  causeObj: unknown,
   logger: Logger = Logger.child("Assert"),
 ) {
   try {
-    if (expected_value !== null) {
-      func(expected_value);
+    if (expectedValue !== null) {
+      func(expectedValue);
     } else {
       func();
     }
   } catch (e) {
-    logger.error("Error cause", cause_obj);
+    logger.error("Error cause", causeObj);
     throw e;
   }
 }
 
 export function expectBuilder(
     actual: unknown,
-    error_msg: string,
-    is_expected: boolean,
+    errorMsg: string,
+    isExpected: boolean,
   ) {
-    return is_expected
-      ? expect(actual, error_msg)
-      : expect(actual, error_msg).not;
+    return isExpected
+      ? expect(actual, errorMsg)
+      : expect(actual, errorMsg).not;
   }
