@@ -34,3 +34,29 @@ LOCATIONS.forEach((location) => {
     });
 });
 
+test(`Wrong Test`, async ({ mainPage }) => {
+                // Data preparation
+                const dateValues = dateConverter("Today");
+                const peopleValues = peopleConverter("4");
+                const location = LOCATIONS[0]
+
+                // Prepare
+                await mainPage.open();
+                await mainPage.closePrivacyWindow();
+                const restaurantsPage = await mainPage.moveToRestaurantsPage();
+
+                // test
+                const actualLocationValue = await restaurantsPage.fillLocation(location);
+                assertEqual(actualLocationValue, location, "Location value")
+
+                const actualDateValue = await restaurantsPage.selectDate(dateValues.inputValue);
+                assertEqual(actualDateValue, dateValues.expectedValue, "Date value")
+
+                const actualPeopleValue = await restaurantsPage.selectPeople(peopleValues.inputValue);
+                assertEqual(actualPeopleValue, peopleValues.expectedValue, "People amount value")
+
+                await restaurantsPage.clickFindVoucherButton();
+                const actualAmountOffers = await restaurantsPage.getAmountOffers();
+                assertGreaterThan(actualAmountOffers, 10000);
+            });
+
