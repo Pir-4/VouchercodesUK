@@ -1,7 +1,7 @@
 import type { Page } from 'playwright-core';
 import { expect } from "@playwright/test";
 import { Logger } from "@base/logger";
-import { SCREENSHOTS_PATH } from "@base/config";
+import { SCREENSHOTS_PATH, IS_SAVE_SCREENSHOTS } from "@base/config";
 
 export class BasePage {
     public readonly logger: Logger;
@@ -40,7 +40,8 @@ export class BasePage {
         return this.page.getByTestId(itemId);
     }
 
-    public async takeScreenshot(name: string) {
+    public async takeScreenshot(name: string, is_save: boolean = IS_SAVE_SCREENSHOTS) {
+        if (!is_save) return;
         this.logger.debug(`taking screenshot to ${name}`);
         const currentDate = new Date().toISOString().replace(/[:.]/g, '-');
         const screenshotFileName = `${name}-${currentDate}.png`;

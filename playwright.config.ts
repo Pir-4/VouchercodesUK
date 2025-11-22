@@ -32,6 +32,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     /* Take screenshot only when test fails */
     screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
     testIdAttribute: 'data-qa',
   },
 
