@@ -1,6 +1,6 @@
-import {Logger} from "@base/logger";
-import {BasePage} from "./basePage";
-import {RestaurantsPage} from "./restaurantsPage";
+import { Logger } from "@base/logger";
+import { BasePage } from "./basePage";
+import { RestaurantsPage } from "./restaurantsPage";
 import {
     Title,
     Categories,
@@ -10,7 +10,7 @@ import {
     Restaurants,
     PrivacyWindowTimeout,
 } from "./mainPageConstants"
-import type {Page} from "playwright-core";
+import type { Page } from "playwright-core";
 
 export class MainPage extends BasePage {
 
@@ -27,7 +27,7 @@ export class MainPage extends BasePage {
         this.logger.info('close privacy window');
         const privacyWindow = this.getById(PrivacyWindowId);
         const isVisible = await privacyWindow
-            .waitFor({state: "visible", timeout: PrivacyWindowTimeout})
+            .waitFor({ state: "visible", timeout: PrivacyWindowTimeout })
             .then(() => true)
             .catch(() => false);
 
@@ -48,7 +48,7 @@ export class MainPage extends BasePage {
         this.logger.info(`open category ${categoryName}`);
         await this.takeScreenshot(`CategorySection-${categoryName}`);
         const section = this.getByTestId(AdminableCategoryTestId)
-            .filter({hasText: categoryName});
+            .filter({ hasText: categoryName });
         await section.click();
     }
 
@@ -56,8 +56,8 @@ export class MainPage extends BasePage {
         this.logger.info('move to restaurants page');
         await this.openMenuSection(Categories);
         await this.openCategory(Restaurants);
-        // Wait for navigation before getting URL
-        await this.page.waitForURL('**', {waitUntil: 'networkidle'});
+        // Wait for page to load and key element to appear
+        await this.page.waitForLoadState('networkidle');
         return RestaurantsPage.createPage(this.page);
     }
 }
