@@ -10,13 +10,13 @@ export function assertEqual(
 ) {
   const logger = Logger.child("Assert");
   logger.debug("Assert equal");
-  let error_msg = `${actualValueName} has value ${actualValue} is not equal to ${expectedValue}`;
+  let errorMsg = `${actualValueName} has value ${actualValue} is not equal to ${expectedValue}`;
   if (!isEqual) {
-    error_msg = `${actualValueName} has value ${actualValue} is equal to ${expectedValue}`;
+    errorMsg = `${actualValueName} has value ${actualValue} is equal to ${expectedValue}`;
   }
   const assert_func = expectBuilder(
     actualValue,
-    error_msg,
+    errorMsg,
     isEqual,
   );
   logWrapper(assert_func.toEqual, expectedValue, expectedValue, logger);
@@ -27,9 +27,9 @@ export function assertEqual(
     boundaryValue: number,
     actualValueName = "Actual value",
   ) {
-    const error_msg = `${actualValueName} is less then ${boundaryValue}`;
+    const errorMsg = `${actualValueName} is less then ${boundaryValue}`;
     logWrapper(
-      expect(actualValue, error_msg).toBeGreaterThan,
+      expect(actualValue, errorMsg).toBeGreaterThan,
       boundaryValue,
       actualValue,
     );
