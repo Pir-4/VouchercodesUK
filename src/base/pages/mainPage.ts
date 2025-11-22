@@ -38,14 +38,14 @@ export class MainPage extends BasePage {
     }
 
     protected async openMenuSection(sectionName: string): Promise<void> {
-        this.logger.info(`open menu section ${sectionName}`);
+        this.logger.info(`open menu section "${sectionName}"`);
         await this.takeScreenshot(`MenuSection-${sectionName}`);
         const section = this.getButtonByText(sectionName);
         await section.click();
     }
 
     protected async openCategory(categoryName: string): Promise<void> {
-        this.logger.info(`open category ${categoryName}`);
+        this.logger.info(`open category "${categoryName}"`);
         await this.takeScreenshot(`CategorySection-${categoryName}`);
         const section = this.getByTestId(AdminableCategoryTestId)
             .filter({ hasText: categoryName });
@@ -53,7 +53,7 @@ export class MainPage extends BasePage {
     }
 
     public async moveToRestaurantsPage() {
-        this.logger.info('move to restaurants page');
+        this.logger.info('move to "restaurants" page');
         await this.openMenuSection(Categories);
         await this.openCategory(Restaurants);
         // Wait for page to load and key element to appear

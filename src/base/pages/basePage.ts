@@ -10,7 +10,7 @@ export class BasePage {
     }
 
     public async open(): Promise<void> {
-        this.logger.info(`Open ${this.target_url}`);
+        this.logger.info(`open ${this.target_url}`);
         await this.page.goto(this.target_url);
         await this.takeScreenshot("open");
     }

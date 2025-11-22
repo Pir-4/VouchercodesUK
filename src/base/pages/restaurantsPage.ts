@@ -20,7 +20,7 @@ export class RestaurantsPage extends BasePage {
     }
 
     public async fillLocation(text: string) {
-        this.logger.info(`filling location for ${text}`);
+        this.logger.info(`filling location for "${text}"`);
         await this.takeScreenshot("FillLocation");
         const locationInput = this.getById(LocationInputId);
         await locationInput.fill(text);
@@ -48,12 +48,12 @@ export class RestaurantsPage extends BasePage {
     }
 
     public async clickFindVoucherButton() {
-        this.logger.info("Press FindVoucher button");
+        this.logger.info("press FindVoucher button");
         await this.getByTestId(FindVoucherButtonTestId).click();
     }
 
     public async getAmountOffers(): Promise<number> {
-        this.logger.info("Getting amount of offers");
+        this.logger.info("getting amount of offers");
         const offers = this.getByXPath(OffersXPath);
         const count = await offers.count();
         this.logger.info(`Found ${count} offers`);
