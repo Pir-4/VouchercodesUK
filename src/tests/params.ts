@@ -5,6 +5,7 @@ export const LOCATIONS = [
 	"n17 10qj",
 	"SW7 5ND",
 ];
+
 export const DATES = [
 	{
 		dateValue: "Any",
@@ -39,6 +40,7 @@ export const DATES = [
 		dateCaseName: "Tomorrow+5",
 	},
 ];
+
 export const PEOPLE = [
 	{
 		peopleValue: "Any",

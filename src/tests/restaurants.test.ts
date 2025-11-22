@@ -28,7 +28,7 @@ LOCATIONS.forEach((location) => {
 
                 await restaurantsPage.clickFindVoucherButton();
                 const actualAmountOffers = await restaurantsPage.getAmountOffers();
-                assertGreaterThan(actualAmountOffers, 0);
+                assertGreaterThan(actualAmountOffers, 0, "Amount offers");
             });
         });
     });
@@ -57,6 +57,6 @@ test(`Wrong Test`, async ({ mainPage }) => {
 
                 await restaurantsPage.clickFindVoucherButton();
                 const actualAmountOffers = await restaurantsPage.getAmountOffers();
-                assertGreaterThan(actualAmountOffers, 10000);
+                assertGreaterThan(actualAmountOffers, 10000, "Amount offers");
             });
 
