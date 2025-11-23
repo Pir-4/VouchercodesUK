@@ -1,17 +1,21 @@
-import {z} from "zod";
-import {parseEnv} from "znv";
+import { z } from "zod";
+import { parseEnv } from "znv";
 import dotenv from "dotenv";
-
-import {LogLevel} from "@base/logger/logger";
+import { LogLevel } from "@base/logger/logger";
 
 
 dotenv.config();
 
 const env = parseEnv(process.env, {
-    PAGE_URL: z.string().default("The ulr of tested page"),
+    PAGE_URL: z.string().describe("The URL of the page being tested"),
     APP_LOG_LEVEL: z
-        .nativeEnum(LogLevel)
-        .optional()
+        .enum([
+            LogLevel.debug,
+            LogLevel.info,
+            LogLevel.warn,
+            LogLevel.error,
+            LogLevel.silent,
+        ])
         .default(LogLevel.info)
         .describe(
             `One of the possible log levels: [${Object.values(LogLevel).join(",")}]. Default is "info"`,
