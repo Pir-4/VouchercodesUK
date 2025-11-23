@@ -58,5 +58,4 @@ test(`Wrong Test`, async ({ mainPage }) => {
                 await restaurantsPage.clickFindVoucherButton();
                 const actualAmountOffers = await restaurantsPage.getAmountOffers();
                 assertGreaterThan(actualAmountOffers, 10000, "Amount offers");
-            });
-
+});
